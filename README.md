@@ -13,8 +13,51 @@ CSS locator by attribute: `#` for `id`, `.` for `class`, tag name for element.
 ## Running Tests
 
 ```bash
+# run a single test in a file (headed = visible browser)
 pytest -s playwrightBasics.py::test_playwright_shortcut --headed
-pytest -s test_e2e_framework_web_api.py --headed --browser_name firefox
+
+# run a whole file and choose the browser
+pytest -s test_e2e_framework_web_api_create_order.py --headed --browser_name firefox
+
+# run all tests
+pytest -s
+```
+
+### Run by marker
+
+Markers are registered in `pytest.ini` (`smoke`, `full`).
+
+```bash
+pytest -m smoke        # run only smoke tests
+pytest -m full         # run only full end-to-end tests
+pytest -m "not smoke"  # run everything except smoke
+```
+
+### Custom command-line options
+
+Defaults are loaded from `data/execution_data.json` (see `conftest.py`).
+
+```bash
+pytest -s --browser_name firefox   # chrome (default) or firefox
+pytest -s --url http://rahulshettyacademy.com/client
+```
+
+### Run by partial name
+
+`-k` selects tests whose name matches an expression (substring match).
+
+```bash
+pytest -k create              # run tests whose name contains "create"
+pytest -k order               # run tests whose name contains "order"
+pytest -k "create or full"    # combine with or / and / not
+```
+
+### Useful flags
+
+```bash
+pytest --co -q         # collect-only: list tests without running them
+pytest -m full --co    # preview which tests a marker selects
+pytest --markers       # show all registered markers
 ```
 
 ## Markers

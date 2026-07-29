@@ -43,7 +43,7 @@ def pytest_addoption(parser):
 def browser_setup(playwright: Playwright,request): # request gives access to global variables
     browser = playwright.chromium.launch(headless=False)
 
-    browser_name=request.config.getoption("--browser_name")  #get the arg from the command line : pytest -s test_e2e_framework_web_api.py --headed --browser_name firefox
+    browser_name=request.config.getoption("--browser_name")  #get the arg from the command line : pytest -s test_e2e_framework_web_api_create_order.py --headed --browser_name firefox
     if browser_name=="chrome":
         browser = playwright.chromium.launch(headless=False)
     elif browser_name=="firefox":
