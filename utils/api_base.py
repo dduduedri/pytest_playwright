@@ -12,9 +12,10 @@ class APIUtils:
         response = api_request_context.post("/api/ecom/auth/login",
                                         data=login_payload,
                                         headers={"Content-Type": "application/json"})
-        # print(response.status)
-        # print(response.text())
-        assert response.ok
+        assert response.ok, (
+            f"Login failed for {user_cred['userEmail']} "
+            f"(status {response.status}): {response.text()}"
+        )
         response_body = response.json()
         return response_body["token"]
 
