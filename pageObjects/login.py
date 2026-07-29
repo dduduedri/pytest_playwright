@@ -8,8 +8,8 @@ class LoginPage:
     def __init__(self,my_page):
         self.page=my_page
 
-    def navigate(self):
-        self.page.goto("http://rahulshettyacademy.com/client")
+    # def navigate(self):
+    #     self.page.goto("http://rahulshettyacademy.com/client") #In conftest
 
     def login(self,user_email,user_password):
         self.page.locator("#userEmail").fill(user_email)

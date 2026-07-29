@@ -1,3 +1,6 @@
+import json
+import os
+
 import pytest
 from playwright.sync_api import Browser, Page, Playwright
 
@@ -23,9 +26,16 @@ from playwright.sync_api import Browser, Page, Playwright
 #     my_browser.close()
 
 
+with open('data/execution_data.json') as _execution_data_file:
+    execution_data = json.load(_execution_data_file)
+
+    
 def pytest_addoption(parser):
     parser.addoption(
-        "--browser_name", action="store", default="chrome", help="my option: chrome or firefox"
+        "--browser_name", action="store", default=execution_data["browser"], help="my option: chrome or firefox"
+    )
+    parser.addoption(
+        "--url", action="store", default=execution_data["application_url"], help="application url"
     )
 
 #A more efficient structure reuses the browser but creates a fresh context per test:
@@ -46,10 +56,11 @@ def browser_setup(playwright: Playwright,request): # request gives access to glo
 
 #new context for each test
 @pytest.fixture(scope="function")
-def context_setup(browser_setup: Browser) :
+def context_setup(browser_setup: Browser,request) :
+    url = request.config.getoption("--url")
     context = browser_setup.new_context()
     page = context.new_page()
-
+    page.goto(url)
     yield page
 
     context.close()

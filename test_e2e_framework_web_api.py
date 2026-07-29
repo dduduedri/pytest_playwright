@@ -30,12 +30,12 @@ def test_e2e_api(playwright:Playwright ,context_setup,user_credentials_params) :
     # my_page = my_context.new_page()
 
     api_util= APIUtils ()
-    print(f"token :{api_util.get_token (playwright,user_credentials_params)}")
+    #print(f"token :{api_util.get_token (playwright,user_credentials_params)}")
     order_id = api_util.create_order(playwright,user_credentials_params)
-    print(f"order_id :{order_id}")
+    #print(f"order_id :{order_id}")
 
     login_page=LoginPage(context_setup)
-    login_page.navigate()
+    #login_page.navigate() #in conftest
 
     dashboard_page = login_page.login_and_dashboard(user_email,user_password)
     order_history=dashboard_page.order_nav_link_to_history()
