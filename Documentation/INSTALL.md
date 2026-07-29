@@ -93,6 +93,13 @@ Run against a specific browser:
 pytest -s --headed --browser_name firefox
 ```
 
+Run in parallel across CPU cores (via `pytest-xdist`):
+
+```bash
+pytest -n auto   # one worker per CPU core
+pytest -n 3      # use a specific number of workers
+```
+
 ## Deactivate the virtual environment
 
 When you are finished working:

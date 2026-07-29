@@ -87,6 +87,12 @@ pytest -s test_e2e_framework_web_api.py --headed --browser_name firefox
 
 # run one test by name
 pytest -s test_e2e_framework_web_api.py::test_e2e_api --headed
+
+# run in parallel across CPU cores (pytest-xdist)
+pytest -n auto
+
+# run with a specific number of parallel workers
+pytest -n 3
 ```
 
 ## 8. Project-specific options

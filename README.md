@@ -42,6 +42,18 @@ pytest -s --browser_name firefox   # chrome (default) or firefox
 pytest -s --url http://rahulshettyacademy.com/client
 ```
 
+### Run in parallel (pytest-xdist)
+
+`pytest-xdist` distributes tests across multiple worker processes.
+
+```bash
+pytest -n auto     # use one worker per CPU core
+pytest -n 3        # use 3 parallel workers
+pytest -n 4        # use 4 parallel workers
+```
+
+> Tests launch real browsers, so parallel runs open multiple browser windows at once.
+
 ### Run by partial name
 
 `-k` selects tests whose name matches an expression (substring match).
