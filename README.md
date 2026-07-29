@@ -64,6 +64,34 @@ pytest --html=report.html --self-contained-html
 
 Open `report.html` in a browser to view the results.
 
+### Tracing (Playwright)
+
+Tracing is wired into the `context_setup` fixture in `conftest.py`. When enabled, a trace of
+each test is saved to `test-results/<test-name>/trace.zip`.
+
+```bash
+pytest --tracing on                 # record a trace for every test
+pytest --tracing retain-on-failure  # record only for failing tests
+```
+
+Full example (browser, marker, parallel, tracing, HTML report together):
+
+```bash
+pytest --browser_name chrome -m full -n auto --tracing on --html=report.html
+```
+
+#### View a trace
+
+Option 1 - local viewer:
+
+```bash
+playwright show-trace test-results/<test-name>/trace.zip
+```
+
+Option 2 - online viewer: open [trace.playwright.dev](https://trace.playwright.dev/) and
+drag-and-drop the `trace.zip` file onto the page (the file is processed locally in your
+browser and is not uploaded anywhere).
+
 ### Run by partial name
 
 `-k` selects tests whose name matches an expression (substring match).

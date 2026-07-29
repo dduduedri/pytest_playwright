@@ -106,6 +106,25 @@ Generate an HTML report (via `pytest-html`):
 pytest --html=report.html --self-contained-html
 ```
 
+Record a Playwright trace (saved to `test-results/<test-name>/trace.zip`):
+
+```bash
+pytest --tracing on
+```
+
+Combined example (browser, marker, parallel, tracing, HTML report):
+
+```bash
+pytest --browser_name chrome -m full -n auto --tracing on --html=report.html
+```
+
+View a trace locally, or open [trace.playwright.dev](https://trace.playwright.dev/) and
+drag-and-drop the `trace.zip` onto the page:
+
+```bash
+playwright show-trace test-results/<test-name>/trace.zip
+```
+
 ## Deactivate the virtual environment
 
 When you are finished working:

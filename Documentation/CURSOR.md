@@ -96,6 +96,15 @@ pytest -n 3
 
 # generate a self-contained HTML report (pytest-html)
 pytest --html=report.html --self-contained-html
+
+# record a Playwright trace per test -> test-results/<test-name>/trace.zip
+pytest --tracing on
+
+# combined: browser, marker, parallel, tracing, HTML report
+pytest --browser_name chrome -m full -n auto --tracing on --html=report.html
+
+# view a trace locally (or drag-and-drop the zip onto https://trace.playwright.dev/)
+playwright show-trace test-results/<test-name>/trace.zip
 ```
 
 ## 8. Project-specific options
