@@ -54,6 +54,16 @@ pytest -n 4        # use 4 parallel workers
 
 > Tests launch real browsers, so parallel runs open multiple browser windows at once.
 
+### HTML report (pytest-html)
+
+`pytest-html` generates a self-contained HTML report of the run.
+
+```bash
+pytest --html=report.html --self-contained-html
+```
+
+Open `report.html` in a browser to view the results.
+
 ### Run by partial name
 
 `-k` selects tests whose name matches an expression (substring match).

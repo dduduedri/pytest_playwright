@@ -100,6 +100,12 @@ pytest -n auto   # one worker per CPU core
 pytest -n 3      # use a specific number of workers
 ```
 
+Generate an HTML report (via `pytest-html`):
+
+```bash
+pytest --html=report.html --self-contained-html
+```
+
 ## Deactivate the virtual environment
 
 When you are finished working:

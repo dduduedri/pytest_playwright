@@ -93,6 +93,9 @@ pytest -n auto
 
 # run with a specific number of parallel workers
 pytest -n 3
+
+# generate a self-contained HTML report (pytest-html)
+pytest --html=report.html --self-contained-html
 ```
 
 ## 8. Project-specific options
